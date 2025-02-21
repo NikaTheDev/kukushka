@@ -1,0 +1,135 @@
+/* #region CUSTOM RULES */
+:root {
+  --main-accent-color: rgb(72, 135, 219);
+  --bg-color-light: rgb(246, 246, 246);
+  --bg-color-gray: rgb(215, 213, 213);
+  --bg-color-dark: rgb(57, 57, 57);
+  --font-color-light: rgb(232, 232, 232);
+  --font-color-dark: rgb(47, 46, 46);
+
+  --georgian-fonts: "Noto Sans Georgian", serif;
+  --accent-fonts: "Roboto Slab", serif;
+  --base-fonts: "Roboto", serif;
+}
+/* #endregion */
+
+/* #region GENERAL STYLES */
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--georgian-fonts);
+  color: var(--font-color-dark);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--font-color-dark);
+  transition: all 0.2s linear;
+}
+
+a:hover {
+  color: var(--main-accent-color);
+}
+
+button {
+  cursor: pointer;
+}
+
+label,
+input,
+select,
+option {
+  font: inherit;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+/* #endregion */
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg-color-gray);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  height: 10vh;
+  justify-content: space-between;
+  padding: 1rem;
+  background: var(--bg-color-light);
+}
+
+.logo {
+  justify-content: start;
+  gap: 0.5rem;
+}
+
+.navList {
+  gap: 1rem;
+}
+
+.main {
+  justify-content: space-between;
+  background: var(--bg-color-light);
+  flex: 1;
+}
+
+.mainImg {
+  width: 100%;
+  height: 65vh;
+  background-image: url("./assets/images/2.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+
+
+.footer {
+  height: 15vh;
+  justify-content: space-between;
+  padding: 1rem;
+  background: var(--bg-color-dark);
+}
+
+
