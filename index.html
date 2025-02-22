@@ -38,18 +38,18 @@
       </header>
 
       <!-- MAIN SECTION -->
-      <main class="main">
-        <div class="container flex-column">
+      <main class="main container">
+        <div class="searchSection flex-column">
           <h2>მატარებლის ბილეთები</h2>
 
           <div class="ticketSearch">
             <form id="searchForm" class="searchForm flex-row">
               <select name="" id="" required>
-                <option value="0" selected disabled>საიდან</option>
+                <option value="0" selected disabled>&#xf601; საიდან</option>
               </select>
 
               <select name="" id="" required>
-                <option value="0" selected disabled>სად</option>
+                <option value="0" selected disabled>&#xf3c5; სად</option>
               </select>
 
               <input type="date" name="" id="" />
@@ -58,13 +58,51 @@
                 type="number"
                 name=""
                 id=""
-                placeholder="მგზავრები"
+                placeholder="&#xf183;   მგზავრები"
                 min="1" />
 
-              <button>ძებნა</button>
+              <button>&#xf002; ძებნა</button>
             </form>
           </div>
         </div>
+        <section class="trainsList flex-column">
+          <h3 class="trainsListHeading">
+            აირჩიე გასვლა <span>თბილისი-ბათუმის</span> მიმართულებით
+          </h3>
+
+          <div class="trainsListItem flex-row">
+            <div class="travelInfo flex-row">
+              <div class="from">
+                <p class="station">თბილისი</p>
+                <p class="time">12:00</p>
+              </div>
+
+              <div class="trainInfo flex-column">
+                <p>
+                  <img src="./assets/icons/favicon.svg" alt="" />
+                </p>
+                <p>802</p>
+                <div class="features">
+                  <i class="fa-solid fa-mug-hot fa-lg"></i>
+                  <i class="fa-solid fa-plug fa-lg"></i>
+                  <i class="fa-solid fa-restroom fa-lg"></i>
+                  <i class="fa-solid fa-fan fa-lg"></i>
+                </div>
+              </div>
+
+              <div class="to">
+                <p class="station">ბათუმი</p>
+                <p class="time">5:00</p>
+              </div>
+            </div>
+
+            <div class="vagonInfo flex-row">
+              <button>I კლასი</button>
+              <button>II კლასი</button>
+              <button>ბიზნესკლასი</button>
+            </div>
+          </div>
+        </section>
       </main>
 
       <!-- FOOTER SECTION -->
