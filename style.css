@@ -1,13 +1,9 @@
 /* #region CUSTOM RULES */
 :root {
   --main-accent-color: rgb(72, 135, 219);
-  --bg-color-light: rgb(246, 246, 246);
-  --bg-color-gray: rgb(215, 213, 213);
-  --bg-color-dark: rgb(57, 57, 57);
   --font-color-light: rgb(232, 232, 232);
   --font-color-dark: rgb(47, 46, 46);
-
-  --georgian-fonts: "Noto Sans Georgian", serif;
+  --georgian-fonts: "Noto Serif Georgian", serif;
   --accent-fonts: "Roboto Slab", serif;
   --base-fonts: "Roboto", serif;
 }
@@ -36,6 +32,8 @@ ul {
 }
 
 a {
+  font-weight: 600;
+  font-size: 0.9rem;
   text-decoration: none;
   color: var(--font-color-dark);
   transition: all 0.2s linear;
@@ -49,10 +47,25 @@ button {
   cursor: pointer;
 }
 
+h1 {
+  font-family: var(--accent-fonts);
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  color: var(--font-color-light);
+  margin: 2rem 0;
+}
+
 label,
 input,
 select,
-option {
+option,
+button {
   font: inherit;
 }
 
@@ -68,7 +81,6 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: var(--bg-color-gray);
 }
 
 .container {
@@ -91,15 +103,21 @@ img {
 }
 
 .header {
-  height: 10vh;
+  height: 9vh;
+}
+
+.header .container {
   justify-content: space-between;
   padding: 1rem;
-  background: var(--bg-color-light);
 }
 
 .logo {
   justify-content: start;
-  gap: 0.5rem;
+  gap: 1rem;
+}
+
+.logoImg {
+  width: 48px;
 }
 
 .navList {
@@ -107,29 +125,54 @@ img {
 }
 
 .main {
-  justify-content: space-between;
-  background: var(--bg-color-light);
   flex: 1;
+  padding: 1rem;
 }
 
-.mainImg {
+.main .container {
+  height: 80vh;
+  justify-content: end;
+  background: linear-gradient(
+      90deg,
+      rgba(46, 46, 46, 0.5) 0%,
+      rgba(46, 46, 46, 0.5) 100%
+    ),
+    url("./assets/images/2.webp") center / cover no-repeat;
+  border-radius: 1rem;
+}
+
+.ticketSearch {
+  width: 90%;
+  height: 6rem;
+  background: #ffffffc0;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+}
+
+.searchForm {
   width: 100%;
-  height: 65vh;
-  background-image: url("./assets/images/2.webp");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  height: 100%;
+  flex: 1;
+  flex-wrap: nowrap;
+  gap: 1rem;
 }
 
-
-
-
+.searchForm select,
+.searchForm input,
+.searchForm button {
+  width: 12rem;
+  height: 3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid var(--font-color-light);
+  border-radius: 0.75rem;
+  padding: 0 0.5rem;
+}
 
 .footer {
   height: 15vh;
-  justify-content: space-between;
   padding: 1rem;
-  background: var(--bg-color-dark);
+  margin-top: 3rem;
+  background: #abaaaa;
+  border-radius: 25px;
 }
-
-

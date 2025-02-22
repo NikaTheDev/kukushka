@@ -7,33 +7,67 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="wrapper">
-      <header class="header container flex-row">
-        <div class="logo flex-row">
-          <div class="logoImg"><img src="#" alt="logo" /></div>
-          <h1 class="brandName">Kukushka Railway</h1>
+      <!-- HEADER SECTION -->
+      <header class="header">
+        <div class="container flex-row">
+          <div class="logo flex-row">
+            <img src="./assets/icons/logo.svg" alt="" class="logoImg" />
+            <h1 class="brandName">Kukushka Railway</h1>
+          </div>
+          <nav>
+            <ul class="navList flex-row">
+              <li class="navItem"><a href="#">წესები</a></li>
+              <li class="navItem"><a href="#">ბილეთის გაუქმება</a></li>
+              <li class="navItem"><a href="#">კონტაქტი</a></li>
+            </ul>
+          </nav>
         </div>
-        <nav>
-          <ul class="navList flex-row">
-            <li class="navItem"><a href="#">წესები</a></li>
-            <li class="navItem"><a href="#">ბილეთის გაუქმება</a></li>
-            <li class="navItem"><a href="#">კონტაქტი</a></li>
-          </ul>
-        </nav>
       </header>
 
-      <main class="container main">
-        <section class="searchSection">
-          <div class="mainImg"></div>
-          
-        </section>
-        
+      <!-- MAIN SECTION -->
+      <main class="main">
+        <div class="container flex-column">
+          <h2>მატარებლის ბილეთები</h2>
+
+          <div class="ticketSearch">
+            <form id="searchForm" class="searchForm flex-row">
+              <select name="" id="" required>
+                <option value="0" selected disabled>საიდან</option>
+              </select>
+
+              <select name="" id="" required>
+                <option value="0" selected disabled>სად</option>
+              </select>
+
+              <input type="date" name="" id="" />
+
+              <input
+                type="number"
+                name=""
+                id=""
+                placeholder="მგზავრები"
+                min="1" />
+
+              <button>ძებნა</button>
+            </form>
+          </div>
+        </div>
       </main>
+
+      <!-- FOOTER SECTION -->
       <footer class="container footer"></footer>
     </div>
     <script src="./app.js"></script>
