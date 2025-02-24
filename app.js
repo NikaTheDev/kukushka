@@ -1,8 +1,12 @@
+// Selectors
 let searchForm = document.querySelector("#searchForm");
 let departure = document.querySelector("#departure");
 let arive = document.querySelector("#arive");
 let departureDate = document.querySelector("#departureDate");
+let trainsListSection = document.querySelector(".trainsList");
 
+
+// Fetch stations
 function getStations() {
   fetch("https://railway.stepprojects.ge/api/stations")
     .then((resp) => resp.json())
@@ -22,6 +26,8 @@ function getStations() {
     .catch((error) => console.error("Error fetching stations:", error));
 }
 
+
+// Fetch and display trains
 function searchTrains() {
   let from = departure.options[departure.selectedIndex].text;
   let to = arive.options[arive.selectedIndex].text;
@@ -58,8 +64,9 @@ function searchTrains() {
       });
     });
 }
+
+
 function displayTrains(arr) {
-  let trainsListSection = document.querySelector(".trainsList");
   trainsListSection.innerHTML = "";
 
   if (!arr || arr.length === 0) {
@@ -77,8 +84,9 @@ function displayTrains(arr) {
 
   arr.forEach((train) => {
     trainsListSection.innerHTML += `
-            <div class="trainsListItem flex-row">
+          <div class="trainsListItem flex-row">
             <div class="travelInfo flex-row">
+
               <div class="from flex-column">
                 <p class="station">${train.from}</p>
                 <p class="date">${departureDate.value}</p>
@@ -103,16 +111,24 @@ function displayTrains(arr) {
                 <p class="date">${departureDate.value}</p>
                 <p class="time">${train.arrive}</p>
               </div>
+              
             </div>
 
             <div class="vagonInfo flex-row">
-              <button>II კლასი</button>
-              <button>I კლასი</button>
-              <button>ბიზნესკლასი</button>
+              <button>${train.vagons[0].name}</button>
+              <button>${train.vagons[1].name}</button>
+              <button>${train.vagons[2].name}</button>
             </div>
+            
           </div>`;
   });
 }
+
+async function showSeats() {
+  await console.log("trains");
+}
+
+
 
 searchForm.addEventListener("submit", function (e) {
   e.preventDefault();
