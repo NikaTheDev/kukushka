@@ -88,12 +88,12 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #d2d2d2;
+  background-color: #e0e0e0;
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -162,6 +162,8 @@ img {
   height: 100%;
   flex: 1;
   flex-wrap: nowrap;
+  justify-content: space-evenly;
+  padding: 1rem;
   gap: 1rem;
 }
 
@@ -204,7 +206,7 @@ img {
   justify-content: space-between;
   background: #ffffff;
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1rem 2rem;
   text-align: center;
 }
 
@@ -213,13 +215,28 @@ img {
   justify-content: space-between;
 }
 
+.from,
+.to,
+.trainInfo {
+  gap: 0.25rem;
+}
+
 .trainInfo img {
   width: 1.2rem;
+}
+
+.trainNumber {
+  font-size: 0.85rem;
 }
 
 .station {
   font-size: 1.3rem;
   font-weight: 700;
+}
+
+.date {
+  font-size: 0.8rem;
+  color: #5f5f5f;
 }
 
 .time {
@@ -241,10 +258,10 @@ img {
 }
 
 .vagonInfo button:hover {
-color: #c70000;
+  color: #c70000;
 }
 
 .vagonInfo button:active {
-background-color: var(--font-color-dark);
-color: var(--font-color-light);
+  background-color: var(--font-color-dark);
+  color: var(--font-color-light);
 }

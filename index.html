@@ -44,70 +44,38 @@
 
           <div class="ticketSearch">
             <form id="searchForm" class="searchForm flex-row">
-              <select name="" id="" required>
-                <option value="0" selected disabled>&#xf601; საიდან</option>
+              <select name="departure" id="departure" required>
+                <option value="" selected disabled>&#xf601; საიდან</option>
               </select>
 
-              <select name="" id="" required>
-                <option value="0" selected disabled>&#xf3c5; სად</option>
+              <select name="arive" id="arive" required>
+                <option value="" selected disabled>&#xf3c5; სად</option>
               </select>
 
-              <input type="date" name="" id="" />
+              <input
+                type="date"
+                name="departureDate"
+                id="departureDate"
+                required />
 
               <input
                 type="number"
-                name=""
-                id=""
-                placeholder="&#xf183;   მგზავრები"
+                name="passangerCount"
+                id="passangerCount"
+                placeholder="&#xf183;  მგზავრები"
                 min="1" />
 
               <button>&#xf002; ძებნა</button>
             </form>
           </div>
         </div>
-        <section class="trainsList flex-column">
-          <h3 class="trainsListHeading">
-            აირჩიე გასვლა <span>თბილისი-ბათუმის</span> მიმართულებით
-          </h3>
-
-          <div class="trainsListItem flex-row">
-            <div class="travelInfo flex-row">
-              <div class="from">
-                <p class="station">თბილისი</p>
-                <p class="time">12:00</p>
-              </div>
-
-              <div class="trainInfo flex-column">
-                <p>
-                  <img src="./assets/icons/favicon.svg" alt="" />
-                </p>
-                <p>802</p>
-                <div class="features">
-                  <i class="fa-solid fa-mug-hot fa-lg"></i>
-                  <i class="fa-solid fa-plug fa-lg"></i>
-                  <i class="fa-solid fa-restroom fa-lg"></i>
-                  <i class="fa-solid fa-fan fa-lg"></i>
-                </div>
-              </div>
-
-              <div class="to">
-                <p class="station">ბათუმი</p>
-                <p class="time">5:00</p>
-              </div>
-            </div>
-
-            <div class="vagonInfo flex-row">
-              <button>I კლასი</button>
-              <button>II კლასი</button>
-              <button>ბიზნესკლასი</button>
-            </div>
-          </div>
-        </section>
+        <section class="trainsList flex-column"></section>
       </main>
 
       <!-- FOOTER SECTION -->
       <footer class="container footer"></footer>
     </div>
-    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
