@@ -39,9 +39,10 @@
 
       <!-- MAIN SECTION -->
       <main class="main container">
+        <!-- Search container -->
         <div class="searchSection flex-column">
           <h2>მატარებლის ბილეთები</h2>
-
+          <!-- Search form for trains -->
           <div class="ticketSearch">
             <form id="searchForm" class="searchForm flex-row">
               <select name="departure" id="departure" required>
@@ -69,10 +70,31 @@
             </form>
           </div>
         </div>
+        <!-- Section to show available trains -->
         <section class="trainsList flex-column"></section>
+
+        <!-- Modal for displaying seats -->
+        <div class="modal hidden" id="seatModal">
+          <div class="modal-content">
+            <h2>Select Seats</h2>
+            <div id="seatContainer" class="seat-container"></div>
+            <button id="chooseBtn">Choose</button>
+            <button class="closeBtn">Close</button>
+          </div>
+        </div>
+
+        <!-- Modal for displaying ticket details -->
+        <div class="modal hidden" id="ticketModal">
+          <div class="modal-content">
+            <h2>Ticket Details</h2>
+            <div id="ticketDetails"></div>
+            <button id="buyBtn">Buy</button>
+            <button id="cancelBtn">Cancel</button>
+            <button class="closeBtn">Close</button>
+          </div>
+        </div>
       </main>
 
-      
       <!-- FOOTER SECTION -->
       <footer class="footer">
         <div class="container flex-column">
@@ -94,7 +116,7 @@
             </a>
           </div>
           <div class="copy">
-            <p>2025 	&copy;</p>
+            <p>2025 &copy;</p>
             <p></p>
           </div>
         </div>

@@ -4,13 +4,20 @@ let departure = document.querySelector("#departure");
 let arive = document.querySelector("#arive");
 let departureDate = document.querySelector("#departureDate");
 let trainsListSection = document.querySelector(".trainsList");
+let seatModal = document.getElementById("seatModal");
+let ticketModal = document.getElementById("ticketModal");
+let seatContainer = document.getElementById("seatContainer");
+let chooseBtn = document.getElementById("chooseBtn");
+let ticketDetails = document.getElementById("ticketDetails");
 
+let selectedSeats = [];
 
-// Fetch stations
+// Fetch train stations
 function getStations() {
   fetch("https://railway.stepprojects.ge/api/stations")
     .then((resp) => resp.json())
     .then((stations) => {
+      console.log("Stations fetched:", stations);
       stations.forEach((station) => {
         let option1 = document.createElement("option");
         option1.value = station.id;
@@ -26,8 +33,7 @@ function getStations() {
     .catch((error) => console.error("Error fetching stations:", error));
 }
 
-
-// Fetch and display trains
+// Search and Fetch trains
 function searchTrains() {
   let from = departure.options[departure.selectedIndex].text;
   let to = arive.options[arive.selectedIndex].text;
@@ -49,11 +55,16 @@ function searchTrains() {
     return;
   }
 
+  console.log(`Searching trains from ${from} to ${to} on ${date}`);
+
   fetch(
     `https://railway.stepprojects.ge/api/getdeparture?from=${from}&to=${to}&date=${date}`
   )
     .then((resp) => resp.json())
-    .then((data) => displayTrains(data[0].trains))
+    .then((data) => {
+      console.log("Trains fetched:", data);
+      displayTrains(data[0].trains);
+    })
     .catch((error) => {
       console.error("Error fetching train data:", error);
       let trainsListSection = document.querySelector(".trainsList");
@@ -65,7 +76,7 @@ function searchTrains() {
     });
 }
 
-
+// Display trains in the trains list section
 function displayTrains(arr) {
   trainsListSection.innerHTML = "";
 
@@ -115,20 +126,26 @@ function displayTrains(arr) {
             </div>
 
             <div class="vagonInfo flex-row">
-              <button>${train.vagons[0].name}</button>
-              <button>${train.vagons[1].name}</button>
-              <button>${train.vagons[2].name}</button>
+              <button class="ticketsShow" value="${train.vagons[0].id}">${train.vagons[0].name}</button>
+              <button class="ticketsShow" value="${train.vagons[1].id}">${train.vagons[1].name}</button>
+              <button class="ticketsShow" value="${train.vagons[2].id}">${train.vagons[2].name}</button>
             </div>
             
           </div>`;
   });
+  attachEventListeners();
 }
 
-async function showSeats() {
-  await console.log("trains");
+function attachEventListeners() {
+  document.querySelectorAll(".ticketsShow").forEach((button) => {
+    button.addEventListener("click", function () {
+      let id = this.value;
+      fetch(`https://railway.stepprojects.ge/api/getvagon/${id}`)
+        .then((resp) => resp.json())
+        .then((data) => console.log(data));
+    });
+  });
 }
-
-
 
 searchForm.addEventListener("submit", function (e) {
   e.preventDefault();
