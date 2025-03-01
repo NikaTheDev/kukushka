@@ -16,7 +16,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
     <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -29,7 +29,7 @@
           </div>
           <nav>
             <ul class="navList flex-row">
-              <li class="navItem"><a href="#">მატარებლები</a></li>
+              <li class="navItem"><a href="#">განრიგი</a></li>
               <li class="navItem"><a href="#">ბილეთის გაუქმება</a></li>
               <li class="navItem"><a href="#contacts">კონტაქტი</a></li>
             </ul>
@@ -59,40 +59,13 @@
                 id="departureDate"
                 required />
 
-              <input
-                type="number"
-                name="passangerCount"
-                id="passangerCount"
-                placeholder="&#xf183;  მგზავრები"
-                min="1" />
-
               <button>&#xf002; ძებნა</button>
             </form>
           </div>
         </div>
+
         <!-- Section to show available trains -->
         <section class="trainsList flex-column"></section>
-
-        <!-- Modal for displaying seats -->
-        <div class="modal hidden" id="seatModal">
-          <div class="modal-content">
-            <h2>Select Seats</h2>
-            <div id="seatContainer" class="seat-container"></div>
-            <button id="chooseBtn">Choose</button>
-            <button class="closeBtn">Close</button>
-          </div>
-        </div>
-
-        <!-- Modal for displaying ticket details -->
-        <div class="modal hidden" id="ticketModal">
-          <div class="modal-content">
-            <h2>Ticket Details</h2>
-            <div id="ticketDetails"></div>
-            <button id="buyBtn">Buy</button>
-            <button id="cancelBtn">Cancel</button>
-            <button class="closeBtn">Close</button>
-          </div>
-        </div>
       </main>
 
       <!-- FOOTER SECTION -->
@@ -123,6 +96,6 @@
       </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./scripts/app.js"></script>
   </body>
 </html>
