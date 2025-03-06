@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kukushka Express - Online Payment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+    <link rel="stylesheet" href="../styles/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- HEADER SECTION -->
+      <header class="header">
+        <div class="container flex-row">
+          <div class="logo flex-row">
+            <img src="../assets/icons/logo.svg" alt="" class="logoImg" />
+            <h1 class="brandName">Kukushka Express</h1>
+          </div>
+          <nav>
+            <ul class="navList flex-row">
+              <li class="navItem"><a href="#">განრიგი</a></li>
+              <li class="navItem"><a href="#">ბილეთის გაუქმება</a></li>
+              <li class="navItem"><a href="#contacts">კონტაქტი</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      
+      <!-- MAIN SECTION -->
+      <main class="main container flex-column">
+        <div class="transactionPage flex-column">
+          <div class="message flex-column">
+            <i class="fa-solid fa-circle-check fa-2xl messageImage"></i>
+            <h3>
+              ბილეთი წარმატებით დაიჯავშნა. ბილეთის ნომერია:
+              <span class="ticketNumberMessage"></span>
+            </h3>
+            <p>ბილეთის ყიდვისთვის გთხოვთ შეიყვანეთ ბარათის მონაცემები!</p>
+            <p>ჯავშნის გაუქმებისთვის <button class="ticketDelete">დააჭირეთ აქ</button></p>
+          </div>
+          <div class="formContainer">
+            <div class="totalPaymentContainer flex-column">
+              <p>სულ გადასახდელია: <span class="totalPayment">125</span>₾</p>
+            </div>
+            <form id="transactionForm" class="flex-column transactionForm">
+              <label for="cardNumber">ბარათის ნომერი</label>
+              <input
+                type="number"
+                name="cardNumber"
+                id="cardNumber"
+                placeholder="XXXX XXXX XXXX XXXX"
+                required />
+              <div class="flex-row card-div">
+                <div class="flex-column card-div2">
+                  <label for="cardDate">ბარათის ვადა</label>
+                  <input
+                    type="text"
+                    name="cardDate"
+                    id="cardDate"
+                    placeholder="თვე/წელი"
+                    required />
+                </div>
+                <div class="flex-column card-div2">
+                  <label for="cardCode">CVV/CVC</label>
+                  <input type="number" name="cardCode" id="cardCode" required />
+                </div>
+              </div>
+              <label for="cardHolder">ბარათის მფლობელი</label>
+              <input
+                type="text"
+                name="cardHolder"
+                id="cardHolder"
+                placeholder="სახელი გვარი"
+                required />
+              <button>
+                გადახდა
+                <i class="fa-solid fa-credit-card fa-lg"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER SECTION -->
+      <footer class="footer">
+        <div class="container flex-column">
+          <div class="hotLine">
+            <p>ცხელი ხაზი: <a href="tel:*0000">*0000</a></p>
+          </div>
+          <div class="contacts flex-row" id="contacts">
+            <a href="#">
+              <i class="fa-brands fa-facebook fa-xl"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-twitter fa-xl"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-instagram fa-xl"></i>
+            </a>
+            <a href="mailto:">
+              <i class="fa-solid fa-envelope fa-xl"></i>
+            </a>
+          </div>
+          <div class="copy">
+            <p>2025 &copy;</p>
+            <p></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../scripts/transaction.js"></script>
+  </body>
+</html>

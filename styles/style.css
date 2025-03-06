@@ -459,12 +459,10 @@ img {
   background-color: #c52929c0;
 }
 
-
 /* seats styles */
 .seatContainer {
   height: 15rem;
   width: 100%;
- 
 }
 
 .seatContainerId {
@@ -537,27 +535,6 @@ img {
   height: 2.5rem;
 }
 
-.passangersForm .ticketDeleteBtn:active {
-  background: none;
-}
-
-.passangersForm .ticketDeleteBtn {
-  min-width: 3rem;
-  background: none;
-  border: none;
-}
-
-.ticketDeleteBtn i {
-  color: var(--font-color-dark);
-}
-
-.ticketDeleteBtn i:hover {
-  color: #070707;
-}
-
-.ticketDeleteBtn i:active {
-  color: var(--main-accent-color);
-}
 
 .seatInfo {
   width: 3rem;
@@ -567,6 +544,89 @@ img {
   color: var(--font-color-light);
   border-radius: 0.25rem;
 }
+
+/* #endregion */
+
+/* #region transactionPage styles */
+.transactionPage {
+  width: 80%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  gap: 1rem;
+}
+
+.ticketNumberMessage {
+  color: #c52929c0;
+}
+
+.messageImage {
+  color: #4caf50;
+}
+
+.formContainer {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.totalPaymentContainer {
+  background: #4caf50;
+  align-items: start;
+  padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+}
+
+.transactionForm {
+  background-color: #e0e0e0;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.card-div {
+  width: 100%;
+  gap: 2rem;
+}
+.card-div2 {
+  width: 50%;
+}
+
+.transactionForm input,
+.transactionForm button {
+  border: none;
+  border-radius: 0.25rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.transactionForm label,
+.transactionForm button {
+  margin: 2rem 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.transactionForm button {
+  background-color: var(--font-color-dark);
+  color: var(--font-color-light);
+}
+
+.transactionForm button:hover {
+  background-color: #c52929c0;
+}
+
+.transactionForm button:active {
+  background-color: #4caf50;
+}
+
+
+
+
+
+
 
 /* #endregion */
 

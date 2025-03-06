@@ -287,6 +287,7 @@ document
       .then((text) => {
         let ticketNumber = text.split(":")[1];
         localStorage.setItem("ticketNumber", ticketNumber);
+        window.location.href = "./transaction.html";
       })
       .catch((error) => {
         console.error("Error registering ticket:", error);
