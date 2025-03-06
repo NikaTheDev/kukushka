@@ -15,13 +15,12 @@ function getStations() {
     .then((resp) => resp.json())
     .then((stations) => {
       stations.forEach((station) => {
+        console.log("Stations fetched:", stations);
         let option1 = document.createElement("option");
-        option1.value = station.name;
         option1.textContent = station.name;
         departure.appendChild(option1);
 
         let option2 = document.createElement("option");
-        option2.value = station.name;
         option2.textContent = station.name;
         arive.appendChild(option2);
       });
@@ -34,14 +33,6 @@ function searchTrains() {
   let from = departure.value;
   let to = arive.value;
   let date = departureDate.value;
-
-  if (!from || !to || !date) {
-    Swal.fire({
-      text: "გთხოვთ, შეავსოთ ყველა ველი",
-      icon: "warning",
-    });
-    return;
-  }
 
   if (from === to) {
     Swal.fire({
@@ -56,7 +47,7 @@ function searchTrains() {
   )
     .then((resp) => resp.json())
     .then((data) => {
-      console.log("fetched trains:", data);
+      console.log("Trains fetched:", data);
       displayTrains(data[0].trains);
     })
     .catch((error) => {
@@ -135,4 +126,3 @@ searchForm.addEventListener("submit", function (e) {
 });
 
 getStations();
-

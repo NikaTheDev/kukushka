@@ -67,6 +67,7 @@ h3 {
   font-weight: 700;
   color: var(--font-color-dark);
   margin: 2rem 0;
+  text-align: center;
 }
 
 label,
@@ -311,7 +312,7 @@ img {
 .hotLine p,
 .hotLine a {
   color: var(--font-color-light);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
@@ -333,63 +334,163 @@ img {
 }
 /* #endregion */
 
-
-
 /* #region TICKETS PAGE STYLES */
 .ticketsPage {
   justify-content: space-between;
+  gap: 1rem;
 }
 
+/* INVOICE STYLES */
 .ticketsPage .invoice {
   width: 20%;
-  height: 100vh;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  align-self: stretch;
+  justify-content: start;
+  padding: 2rem 0.5rem;
+}
+
+.invoice h3 {
+  font-size: 1.25rem;
+  margin: 1rem 0 3rem 0;
+}
+
+.ivoiceSeats {
+  min-height: 12rem;
+  justify-content: start;
+}
+
+.invoiceSeatheader {
+  font-size: 1.1rem;
+  font-weight: 700;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: start;
+}
+
+.totalPriceContainer {
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 3px solid black;
+}
+
+/* confirm button in ivoice section */
+
+.passangersFormBtn {
+  width: 12rem;
+  height: 3.25rem;
+  margin: 2rem 0;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background-color: var(--font-color-dark);
+  color: var(--font-color-light);
+}
+
+.passangersFormBtn:hover {
+  color: #4caf50;
+}
+
+.passangersFormBtn:active {
+  background-color: var(--font-color-light);
+  color: var(--font-color-dark);
 }
 
 .ticketsPage .ticketsSection {
   width: 80%;
-  height: 100vh;
-  
+  background: #fff;
+  border-radius: 0.5rem;
 }
+.ticketsChoose h3 {
+  margin: 1.5rem 0 0.5rem 0;
+}
+
+/* train styles */
+.train {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.train .trainsListItem {
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: #e0e0e0;
+  margin-top: 1rem;
+}
+
+.train .travelInfo {
+  width: 100%;
+}
+
 /* Seats choose section style */
 
+/* vagons styles */
 .vagons {
-  width: 50%;
-  height: 5rem;
+  gap: 1rem;
 }
 
 .vagons button {
-  background: none;
+  width: 7rem;
+  height: 3rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.5rem;
+  margin: 1rem 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background-color: var(--font-color-dark);
+  color: var(--font-color-light);
+  transition: transform linear 0.25s;
+  animation: slide-in-left 1s linear 0s 1 normal none;
 }
 
 .vagons button:hover {
   background-color: #c52929c0;
   transform: scale(1.1);
-  transition: all linear 0.2s;
+}
+
+.active {
+  background-color: #c52929c0;
 }
 
 
+/* seats styles */
 .seatContainer {
-  /* background-color: #476dc6; */
-  display: grid;
-  grid-template-columns: repeat(4, 3rem);
+  height: 15rem;
+  width: 100%;
+ 
+}
+
+.seatContainerId {
+  display: none;
+  grid-template-columns: repeat(10, 1fr);
   gap: 0.25rem;
   margin-top: 1rem;
 }
 
 .seat {
-  width: 2.75rem;
-  height: 2.75rem;
-  background-color: #585757;
+  width: 3.25rem;
+  height: 3.25rem;
+  background-color: #a4b3c6;
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   border-radius: 0.25rem;
   padding: 0.25rem;
+  border-radius: 0.25rem;
+  animation: slide-in-left 0.75s linear 0s 1 normal none;
+}
+
+.price {
+  color: var(--main-accent-color);
 }
 
 .seat:hover {
@@ -404,13 +505,30 @@ img {
 
 .seat.occupied {
   background-color: var(--main-accent-color);
+  opacity: 0.75;
   cursor: not-allowed;
+  font-weight: 700;
+  color: black;
+}
+
+.chooseVagonName {
+  font-size: 1.25rem;
+  background-color: var(--font-color-dark);
+  color: var(--font-color-light);
+  padding: 0.75rem 1.25rem;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 /* Passangers info section style */
+.contactInfo {
+  gap: 1rem;
+  width: 100%;
+}
+
 .passangerInfo {
-gap: 1rem;
-margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .passangersForm input,
@@ -451,3 +569,14 @@ margin-bottom: 1rem;
 }
 
 /* #endregion */
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

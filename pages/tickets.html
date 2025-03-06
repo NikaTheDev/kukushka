@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kukushka Railway - Tickets</title>
+    <title>Kukushka Express - Tickets</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,7 +25,7 @@
         <div class="container flex-row">
           <div class="logo flex-row">
             <img src="../assets/icons/logo.svg" alt="" class="logoImg" />
-            <h1 class="brandName">Kukushka Railway</h1>
+            <h1 class="brandName">Kukushka Express</h1>
           </div>
           <nav>
             <ul class="navList flex-row">
@@ -42,37 +42,22 @@
         <div class="ticketsPage flex-row">
           <section class="ticketsSection flex-column">
             <div class="ticketsChoose flex-column">
-              <h2>ბილეთები</h2>
-              <div class="train">
-                
-              </div>
-              <div class="chooseVagon">
+              <h3>არჩეული რეისი</h3>
+              <div class="train flex-column"></div>
+
+              <div class="chooseVagon flex-column">
                 <h3>გთხოვთ აირჩიოთ ვაგონი</h3>
-                <div class="vagons flex-row">
-                  <button>
-                    <img src="../assets/images/firstWagon.png" alt="" />
-                  </button>
-                  <button>
-                    <img src="../assets/images/midWagon.png" alt="" />
-                  </button>
-                  <button>
-                    <img src="../assets/images/lastWagon.png" alt="" />
-                  </button>
-                </div>
+                <div class="vagons flex-row"></div>
               </div>
-
-              <div id="seatContainer" class="seatContainer">
-                <button class="seat flex-column">
-                  <p class="seatNumber">A1</p>
-                  <p class="seatPrice">75₾</p>
-                </button>
-              </div>
-
+              <div id="seatContainer" class="seatContainer flex-row"></div>
             </div>
+
             <div class="passangers">
-              <form id="passangersForm" class="passangersForm searchForm">
-                <div class="contactInfo">
-                  <h3>საკონტაქტო ინფორმაცია</h3>
+              <form
+                id="passangersForm"
+                class="passangersForm searchForm flex-column">
+                <h3>საკონტაქტო ინფორმაცია</h3>
+                <div class="contactInfo flex-row">
                   <input
                     type="email"
                     name="email"
@@ -87,97 +72,31 @@
                 </div>
                 <div class="passangerInfoList">
                   <h3>მგზავრების ინფორმაცია</h3>
-                  <div class="passangerInfo flex-row">
-                    <div class="seatInfo flex-column">
-                      <p class="seatNumber">A1</p>
-                      <p class="seatPrice">75₾</p>
-                    </div>
-                    <input
-                      type="text"
-                      id="name"
-                      placeholder="სახელი"
-                      required />
-                    <input
-                      type="text"
-                      id="lastName"
-                      placeholder="გვარი"
-                      required />
-                    <input
-                      type="text"
-                      name="Idnumber"
-                      id="Idnumber"
-                      placeholder="პირადი ნომერი"
-                      required />
-
-                    <button type="button" class="ticketDeleteBtn">
-                      <i
-                        class="fa-solid fa-trash-can fa-xl"
-                        title="ბილეთის წაშლა"></i>
-                    </button>
-                  </div>
-                  <div class="passangerInfo flex-row">
-                    <div class="seatInfo flex-column">
-                      <p class="seatNumber">A1</p>
-                      <p class="seatPrice">75₾</p>
-                    </div>
-                    <input
-                      type="text"
-                      id="name"
-                      placeholder="სახელი"
-                      required />
-                    <input
-                      type="text"
-                      id="lastName"
-                      placeholder="გვარი"
-                      required />
-                    <input
-                      type="text"
-                      name="Idnumber"
-                      id="Idnumber"
-                      placeholder="პირადი ნომერი"
-                      required />
-
-                    <button type="button" class="ticketDeleteBtn">
-                      <i
-                        class="fa-solid fa-trash-can fa-xl"
-                        title="ბილეთის წაშლა"></i>
-                    </button>
-                  </div>
-                  <div class="passangerInfo flex-row">
-                    <div class="seatInfo flex-column">
-                      <p class="seatNumber">A1</p>
-                      <p class="seatPrice">75₾</p>
-                    </div>
-                    <input
-                      type="text"
-                      id="name"
-                      placeholder="სახელი"
-                      required />
-                    <input
-                      type="text"
-                      id="lastName"
-                      placeholder="გვარი"
-                      required />
-                    <input
-                      type="text"
-                      name="Idnumber"
-                      id="Idnumber"
-                      placeholder="პირადი ნომერი"
-                      required />
-
-                    <button type="button" class="ticketDeleteBtn">
-                      <i
-                        class="fa-solid fa-trash-can fa-xl"
-                        title="ბილეთის წაშლა"></i>
-                    </button>
-                  </div>
                 </div>
               </form>
             </div>
           </section>
 
           <aside class="invoice flex-column">
-            <button form="passangersForm">დადასტურება</button>
+            <h3>არჩეული ადგილები</h3>
+            <div class="ivoiceSeats flex-column">
+              <div class="invoiceSeatheader flex-row">
+                <p class="invoiceSeatClass">ვაგონი</p>
+                <p class="invoiceSeatNumber">ადგილი</p>
+                <p class="invoiceSeatPrice">ფასი</p>
+              </div>
+              <div class="invoiceSeatsList flex-column">
+
+              </div>
+              
+            </div>
+            <div class="totalPriceContainer flex-row"><p>სულ</p>| <span><span class="totalPriceItem"></span>₾</span></div>
+            <button
+              form="passangersForm"
+              id="passangersFormBtn"
+              class="passangersFormBtn">
+              დადასტურება
+            </button>
           </aside>
         </div>
       </main>

@@ -1,7 +1,10 @@
-// Redirect if trainId is missing
 // let trainId = sessionStorage.getItem("selectedTrainId") || null;
-let train = document.querySelector(".train")
-let trainId = 37;
+let train = document.querySelector(".train");
+let vagons = document.querySelector(".vagons");
+let seatContainer = document.getElementById("seatContainer");
+
+let trainId = 15;
+let selectedSeats = [];
 
 if (!trainId) {
   Swal.fire({
@@ -17,13 +20,15 @@ if (!trainId) {
 }
 
 fetch(`https://railway.stepprojects.ge/api/trains/${trainId}`)
-.then(resp => resp.json())
-.then(train => showTrain(train))
-
+  .then((resp) => resp.json())
+  .then((train) => {
+    showTrain(train);
+    showVagons(train.vagons);
+  });
 
 function showTrain(obj) {
   train.innerHTML = "";
-    train.innerHTML += `<div class="trainsListItem flex-row">
+  train.innerHTML += `<div class="trainsListItem flex-row">
                   <div class="travelInfo flex-row">
                     <div class="from flex-column">
                       <p class="station">${obj.from}</p>
@@ -45,135 +50,245 @@ function showTrain(obj) {
                     </div>
                   </div>
                 </div>`;
+}
+
+function showVagons(data) {
+  vagons.innerHTML = "";
+
+  data.forEach((vagon) => {
+    let vagonBtn = document.createElement("button");
+    vagonBtn.classList.add("vagonBtn");
+    vagonBtn.setAttribute("id", `${vagon.id}`);
+    vagonBtn.textContent = vagon.name;
+    vagons.append(vagonBtn);
+    showSeats(vagon.id);
+    vagonBtn.addEventListener("click", () => {
+      showHideSeats(vagon.id);
+    });
+  });
+}
+
+function showSeats(id) {
+  fetch(`https://railway.stepprojects.ge/api/getvagon/${id}`)
+    .then((resp) => resp.json())
+    .then((vagonData) => {
+      let vagon = vagonData[0];
+
+      let seatContainerId = document.createElement("div");
+      seatContainerId.setAttribute("id", `vagon-${vagon.id}`);
+      seatContainerId.classList.add("seatContainerId");
+      seatContainer.append(seatContainerId);
+
+      const sortedSeats = vagon.seats.sort((a, b) => {
+        const regex = /^(\d+)([A-Za-z])$/;
+        const [, numA, letterA] = a.number.match(regex);
+        const [, numB, letterB] = b.number.match(regex);
+
+        return letterA.localeCompare(letterB) || numA - numB;
+      });
+
+      sortedSeats.forEach((seat) => {
+        let seatBtn = document.createElement("button");
+        seatBtn.classList.add("seat", "flex-column");
+        seatBtn.innerHTML = `
+                <p class="seatNumber">${seat.number}</p>
+                <p class="price">${seat.price}₾</p>`;
+        seatBtn.dataset.seatId = seat.seatId;
+        seatBtn.dataset.number = seat.number;
+        seatBtn.dataset.price = seat.price;
+        seatBtn.dataset.vagonId = seat.vagonId;
+        seatBtn.dataset.isOccupied = seat.isOccupied;
+
+        if (seat.isOccupied) {
+          seatBtn.classList.add("occupied");
+          seatBtn.setAttribute("disabled", "");
+          seatBtn.title = "ადგილი დაკავებულია";
+        }
+
+        seatBtn.addEventListener("click", () => toggleSeatSelection(seatBtn));
+        seatContainerId.appendChild(seatBtn);
+      });
+    });
+}
+
+function showHideSeats(id) {
+  let vagonSeats = document.querySelector(`#vagon-${id}`);
+  document.querySelectorAll(".seatContainerId").forEach((div) => {
+    if (div !== vagonSeats) {
+      div.style.display = "none";
+    }
+  });
+  if (vagonSeats.style.display === "none" || vagonSeats.style.display === "") {
+    vagonSeats.style.display = "grid";
+  } else {
+    vagonSeats.style.display = "none";
   }
+}
 
+function toggleSeatSelection(seatBtn) {
+  let seatId = seatBtn.dataset.seatId;
+  let seatIndex = selectedSeats.findIndex((seat) => seat.seatId === seatId);
 
+  if (seatIndex === -1) {
+    selectedSeats.push({
+      seatId: seatBtn.dataset.seatId,
+      number: seatBtn.dataset.number,
+      price: seatBtn.dataset.price,
+      vagonId: seatBtn.dataset.vagonId,
+      isOccupied: seatBtn.dataset.isOccupied,
+    });
+    seatBtn.classList.add("selected");
+  } else {
+    selectedSeats.splice(seatIndex, 1);
+    seatBtn.classList.remove("selected");
+  }
+  updateInvoice();
+  updatePassengerInfo();
+  console.log("Selected Seats:", selectedSeats);
+}
 
+function updateInvoice() {
+  let invoiceSeatsList = document.querySelector(".invoiceSeatsList");
+  invoiceSeatsList.innerHTML = "";
 
+  selectedSeats.forEach((seat) => {
+    console.log(seat);
+    let seatRow = document.createElement("div");
+    seatRow.classList.add("invoiceSeatRow", "flex-row");
 
+    let vagonNumber = document.createElement("p");
+    vagonNumber.classList.add("seatRowItem");
+    vagonNumber.textContent = seat.vagonId;
 
-// Function to show modal window and sort seats
-// function showSeatsModal(vagonId) {
-//   loadSeatsFromSession(); // Load saved seats when opening the modal
-//   fetch(`https://railway.stepprojects.ge/api/getvagon/${vagonId}`)
-//     .then((resp) => resp.json())
-//     .then((vagonData) => {
-//       let vagon = vagonData[0];
-//       seatContainer.innerHTML = "";
+    let seatNumber = document.createElement("p");
+    seatNumber.classList.add("seatRowItem");
+    seatNumber.textContent = seat.number;
 
-//       // Sort seats by letter (A, B, C, D) and number (1, 2, 3, 4)
-//       const sortedSeats = vagon.seats.sort((a, b) => {
-//         const regex = /^(\d+)([A-Za-z])$/;
-//         const [, numA, letterA] = a.number.match(regex);
-//         const [, numB, letterB] = b.number.match(regex);
+    let seatPrice = document.createElement("p");
+    seatPrice.classList.add("seatRowItem");
+    seatPrice.textContent = `${seat.price}₾`;
 
-//         return letterA.localeCompare(letterB) || numA - numB;
-//       });
+    seatRow.appendChild(vagonNumber);
+    seatRow.appendChild(seatNumber);
+    seatRow.appendChild(seatPrice);
 
-//       sortedSeats.forEach((seat) => {
-//         let seatBtn = document.createElement("button");
-//         seatBtn.classList.add("seat", "flex-column");
-//         seatBtn.innerHTML = `<p class="seatNumber">${seat.number}</p><p class="price">${seat.price}₾</p>`;
-//         seatBtn.id = seat.seatId;
+    invoiceSeatsList.appendChild(seatRow);
+  });
+  let totalPrice = selectedSeats.reduce(
+    (acc, seat) => acc + parseFloat(seat.price),
+    0
+  );
+  document.querySelector(".totalPriceItem").textContent = totalPrice;
+}
 
-//         if (seat.isOccupied) {
-//           seatBtn.classList.add("occupied");
-//         }
+function updatePassengerInfo() {
+  let passengerContainer = document.querySelector(".passangerInfoList");
 
-//         if (selectedSeats.includes(seat.seatId)) {
-//           seatBtn.classList.add("selected");
-//         }
+  selectedSeats.forEach((seat) => {
+    let existingPassengerInfo = passengerContainer.querySelector(
+      `#passanger-${seat.seatId}`
+    );
 
-//         seatBtn.addEventListener("click", () => toggleSeatSelection(seatBtn));
-//         seatContainer.appendChild(seatBtn);
-//       });
+    if (!existingPassengerInfo) {
+      let passengerRow = document.createElement("div");
+      passengerRow.classList.add("passangerInfo", "flex-row");
+      passengerRow.setAttribute("id", `passanger-${seat.seatId}`);
 
-//       seatModal.style.display = "flex";
-//     })
-//     .catch((error) => {
-//       console.error("Error fetching vagon data:", error);
-//     });
-// }
+      let seatDetails = document.createElement("div");
+      seatDetails.classList.add("seatInfo", "flex-column");
+      seatDetails.innerHTML = `<p class="seatNumber">${seat.number}</p>
+     <p class="vagonId">${seat.vagonId}</p>`;
 
-// Toggle seat selection
-// function toggleSeatSelection(seatBtn) {
-//   let seatId = seatBtn.id;
-//   let seatIndex = selectedSeats.indexOf(seatId);
+      let nameInput = document.createElement("input");
+      nameInput.setAttribute("type", "text");
+      nameInput.setAttribute("placeholder", "სახელი");
+      nameInput.setAttribute("required", "");
+      nameInput.setAttribute("id", `nameInput-${seat.seatId}`);
 
-//   if (seatIndex !== -1) {
-//     selectedSeats.splice(seatIndex, 1);
-//   } else {
-//     selectedSeats.push(seatId);
-//   }
+      let lastNameInput = document.createElement("input");
+      lastNameInput.setAttribute("type", "text");
+      lastNameInput.setAttribute("placeholder", "გვარი");
+      lastNameInput.setAttribute("required", "");
+      lastNameInput.setAttribute("id", `lastNameInput-${seat.seatId}`);
 
-//   seatBtn.classList.toggle("selected");
-//   saveSeatsToSession(); // Save selected seats to sessionStorage
-// }
+      let idNumberInput = document.createElement("input");
+      idNumberInput.setAttribute("type", "text");
+      idNumberInput.setAttribute("placeholder", "პირადი ნომერი");
+      idNumberInput.setAttribute("required", "");
+      idNumberInput.setAttribute("id", `idNumberInput-${seat.seatId}`);
 
-// Choose button to show ticket details
-// chooseBtn.addEventListener("click", () => {
-//   if (selectedSeats.length === 0) {
-//     Swal.fire({
-//       text: "გთხოვთ, აირჩიოთ ბილეთი",
-//       icon: "warning",
-//     });
-//     return;
-//   }
+      passengerRow.appendChild(seatDetails);
+      passengerRow.appendChild(nameInput);
+      passengerRow.appendChild(lastNameInput);
+      passengerRow.appendChild(idNumberInput);
 
-//   ticketDetails.innerHTML = `
-//     <p class="ticketItems">გამგზავრების ადგილი: <span>${departure.value}</span></p>
-//     <p class="ticketItems">ჩასვლის ადგილი: <span>${arive.value}</span></p>
-//     <p class="ticketItems">გამგზავრების თარიღი: <span>${departureDate.value}</span></p>
-//     <p class="ticketItems">ადგილები: <span id="selectedSeatList"></span></p>
-//     <p class="ticketItems">გადასახდელი ჯამში: <span id="totalPrice"></span>₾</p>
-//   `;
-//   updateTicketDetails();
-//   seatModal.style.display = "none";
-//   ticketModal.style.display = "flex";
-// });
+      passengerContainer.appendChild(passengerRow);
+    }
+  });
 
-// function updateTicketDetails() {
-//   let selectedSeatList = document.getElementById("selectedSeatList");
-//   let totalPriceElement = document.getElementById("totalPrice");
+  let allPassengerRows = passengerContainer.querySelectorAll(".passangerInfo");
+  allPassengerRows.forEach((row) => {
+    console.log(row);
+    let seatId = row.getAttribute("id").substring("passanger-".length);
+    console.log(seatId);
+    if (!selectedSeats.some((seat) => seat.seatId === seatId)) {
+      row.remove();
+    }
+  });
+}
 
-//   selectedSeatList.innerHTML = "";
-//   let totalPrice = 0;
+document
+  .querySelector("#passangersForm")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
 
-//   selectedSeats.forEach((seatId) => {
-//     let seat = document.getElementById(seatId);
-//     let seatNumber = seat.querySelector(".seatNumber").textContent;
-//     let seatPrice = parseFloat(seat.querySelector(".price").textContent.replace("₾", ""));
-//     totalPrice += seatPrice;
+    let email = document.querySelector("#email").value;
+    let phoneNumber = document.querySelector("#phone").value;
+    let date = new Date().toISOString();
 
-//     let seatBtn = document.createElement("button");
-//     seatBtn.textContent = seatNumber;
-//     seatBtn.classList.add("seat-remove");
-//     seatBtn.addEventListener("click", () => removeSeat(seatId));
+    let people = selectedSeats.map((seat) => {
+      let passengerRow = document.querySelector(`#passanger-${seat.seatId}`);
+      let name = passengerRow.querySelector(`#nameInput-${seat.seatId}`).value;
+      let surname = passengerRow.querySelector(
+        `#lastNameInput-${seat.seatId}`
+      ).value;
+      let idNumber = passengerRow.querySelector(
+        `#idNumberInput-${seat.seatId}`
+      ).value;
 
-//     selectedSeatList.appendChild(seatBtn);
-//   });
+      return {
+        seatId: seat.seatId,
+        name: name,
+        surname: surname,
+        idNumber: idNumber,
+        status: "string",
+        payoutCompleted: true,
+      };
+    });
 
-//   totalPriceElement.textContent = totalPrice;
-// }
+    let requestBody = {
+      trainId: trainId,
+      date: date,
+      email: email,
+      phoneNumber: phoneNumber,
+      people: people,
+    };
 
-// function removeSeat(seatId) {
-//   let seatIndex = selectedSeats.indexOf(seatId);
-//   if (seatIndex !== -1) {
-//     selectedSeats.splice(seatIndex, 1);
-//     document.getElementById(seatId).classList.remove("selected"); // Unselect seat
-//     updateTicketDetails(); // Refresh seat list and price
-//   }
-// }
+    sessionStorage.setItem("ticketData", JSON.stringify(requestBody));
 
-// Buy button click
-// document.getElementById("buyBtn").addEventListener("click", () => {
-//   ticketModal.style.display = "none";
-// });
-
-// Close buttons for modals
-// document.querySelectorAll(".closeBtn").forEach((button) => {
-//   button.addEventListener("click", () => {
-//     seatModal.style.display = "none";
-//     ticketModal.style.display = "none";
-//   });
-// });
+    fetch("https://railway.stepprojects.ge/api/tickets/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => response.text())
+      .then((text) => {
+        let ticketNumber = text.split(":")[1];
+        localStorage.setItem("ticketNumber", ticketNumber);
+      })
+      .catch((error) => {
+        console.error("Error registering ticket:", error);
+      });
+  });
