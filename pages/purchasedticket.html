@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kukushka Express - Ticket details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+    <link rel="stylesheet" href="../styles/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- HEADER SECTION -->
+      <header class="header">
+        <div class="container flex-row">
+          <div class="logo flex-row">
+            <img src="../assets/icons/logo.svg" alt="" class="logoImg" />
+            <h1 class="brandName">Kukushka Express</h1>
+          </div>
+          <nav>
+            <ul class="navList flex-row">
+              <li class="navItem"><a href="#">განრიგი</a></li>
+              <li class="navItem"><a href="#">ბილეთის გაუქმება</a></li>
+              <li class="navItem"><a href="#contacts">კონტაქტი</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- MAIN SECTION -->
+      <main class="main container flex-column">
+        <div class="purchasedTicketPage flex-column">
+          <div class="ticket flex-column">
+            <div class="mainTicket flex-column">
+              <p class="ticketHeader flex-column">Kukushka Express</p>
+
+              <div class="infoTicketPassanger flex-column">
+                <p class="infoTicketHeadings">passenger</p>
+                <p class="infoTickettext">სახელი გვარი</p>
+              </div>
+
+              <div class="flex-row ticketStations">
+                <div class="infoTicketFrom flex-column">
+                  <p class="infoTicketHeadings">departure</p>
+                  <p class="infoTickettext">თბილისი</p>
+                </div>
+                <div class="infoTicketTo flex-column">
+                  <p class="infoTicketHeadings">arrival</p>
+                  <p class="infoTickettext">ბათუმი</p>
+                </div>
+              </div>
+
+              <div class="infoTicketDate flex-column">
+                <p class="infoTicketHeadings">date</p>
+                <p class="infoTickettext">ხუთშაბათი 6 მარტი</p>
+              </div>
+
+              <div class="flex-row ticketTimes">
+                <div class="infoTicketTimeFrom flex-column">
+                  <p class="infoTicketHeadings">depart time</p>
+                  <p class="infoTickettext">12:00</p>
+                </div>
+                <div class="infoTicketTimeTo flex-column">
+                  <p class="infoTicketHeadings">arrive time</p>
+                  <p class="infoTickettext">05:00</p>
+                </div>
+              </div>
+
+              <div class="mainTicketInfo flex-row">
+                <div class="mainTicketSeat flex-column">
+                  <p class="mainTicketNumber">A8</p>
+                  <p class="mainTicketText">ადგილი</p>
+                </div>
+                <div class="mainTicketVagon flex-column">
+                  <p class="mainTicketNumber">44</p>
+                  <p class="mainTicketText">ვაგონი</p>
+                </div>
+                <div class="mainTicketTrain flex-column">
+                  <p class="mainTicketNumber">812</p>
+                  <p class="mainTicketText">მატარებელი</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticketFooter flex-column">
+              <p class="ticketFooterText">
+                მარტივად მოძებნე და შეიძინე ბილეთები სასურველი მიმართულებით
+                მთელი საქართველოს მასშტაბით
+              </p>
+
+              <div class="ticketContacts flex-row">
+                <span>
+                  <i class="fa-solid fa-phone"></i>
+                  #000</span
+                >
+                <span>
+                  <i class="fa-solid fa-envelope"></i>
+                  support@tre.ge</span
+                >
+                <span>
+                  <i class="fa-brands fa-facebook"></i>
+                  TRE.Tickets</span
+                >
+              </div>
+
+              <div class="ticketBarcode flex-column">
+                <div class="barcode"></div>
+                <p class="barcodeText">0144234311</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- FOOTER SECTION -->
+      <footer class="footer">
+        <div class="container flex-column">
+          <div class="hotLine">
+            <p>ცხელი ხაზი: <a href="tel:*0000">*0000</a></p>
+          </div>
+          <div class="contacts flex-row" id="contacts">
+            <a href="#">
+              <i class="fa-brands fa-facebook fa-xl"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-twitter fa-xl"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-instagram fa-xl"></i>
+            </a>
+            <a href="mailto:">
+              <i class="fa-solid fa-envelope fa-xl"></i>
+            </a>
+          </div>
+          <div class="copy">
+            <p>2025 &copy;</p>
+            <p></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../scripts/purchasedticket.js"></script>
+  </body>
+</html>

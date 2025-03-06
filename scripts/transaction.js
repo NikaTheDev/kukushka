@@ -19,38 +19,38 @@ let ticketNumberMessage = document.querySelector(".ticketNumberMessage");
 ticketNumberMessage.textContent = ticketNumber;
 
 fetch(`https://railway.stepprojects.ge/api/tickets/checkstatus/${ticketNumber}`)
-.then(resp => resp.json())
-.then(data => {
-  console.log(data);
-  let totalPayment = document.querySelector(".totalPayment");
-  totalPayment.textContent = data.ticketPrice;
-})
-.catch(error => console.log("total price fetch error:", error))
+  .then((resp) => resp.json())
+  .then((data) => {
+    console.log(data);
+    let totalPayment = document.querySelector(".totalPayment");
+    totalPayment.textContent = data.ticketPrice;
+  })
+  .catch((error) => console.log("total price fetch error:", error));
 
 function confirm() {
   fetch(`https://railway.stepprojects.ge/api/tickets/confirm/${ticketNumber}`)
-  .then(resp => resp.json())
-  .then(data => {
-    console.log("confirm:", data);
-    Swal.fire({
-      text: "თქვენ შეიძინეთ ბილეთი. ბილეთის დეტალების ნახვა.",
-      icon: "success",
-    }).then(() => {
-      setTimeout(() => {
-        window.location.href = "./purchasedticket.html";
-      }, 100);
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-    Swal.fire({
-      text: "ბილეთის შეძენა ვერ მოხერხდა. გთხოვთ, სცადოთ თავიდან.",
-      icon: "warning",
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log("confirm:", data);
+      Swal.fire({
+        text: "თქვენ შეიძინეთ ბილეთი. ბილეთის დეტალების ნახვა.",
+        icon: "success",
+      }).then(() => {
+        setTimeout(() => {
+          window.location.href = "./purchasedticket.html";
+        }, 100);
+      });
     })
-  })
+    .catch((error) => {
+      console.log(error);
+      Swal.fire({
+        text: "ბილეთის შეძენა ვერ მოხერხდა. გთხოვთ, სცადოთ თავიდან.",
+        icon: "warning",
+      });
+    });
 }
 
-function ticketDelete () {
+function ticketDelete() {
   fetch(`https://railway.stepprojects.ge/api/tickets/cancel/${ticketNumber}`, {
     method: "DELETE",
   })
@@ -65,7 +65,7 @@ function ticketDelete () {
           window.location.href = "../index.html";
         }, 100);
       });
-      localStorage.removeItem("ticketNumber"); 
+      localStorage.removeItem("ticketNumber");
     })
     .catch((error) => {
       console.log(error);
@@ -82,11 +82,9 @@ function ticketDelete () {
 
 document.querySelector(".ticketDelete").addEventListener("click", () => {
   ticketDelete();
-})
-
-
+});
 
 document.querySelector("#transactionForm").addEventListener("submit", (e) => {
   e.preventDefault();
   confirm();
-})
+});
