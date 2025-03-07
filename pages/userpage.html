@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kukushka Express</title>
+    <title>Kukushka Express - პირადი კაბინეტი</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,8 +15,8 @@
       integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
-    <link rel="icon" type="image/svg+xml" href="./assets/icons/favicon.svg" />
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
+    <link rel="stylesheet" href="../styles/style.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -24,48 +24,21 @@
       <header class="header">
         <div class="container flex-row">
           <div class="logo flex-row">
-            <img src="./assets/icons/logo.svg" alt="" class="logoImg" />
+            <img src="../assets/icons/logo.svg" alt="" class="logoImg" />
             <h1 class="brandName">Kukushka Express</h1>
           </div>
-          <nav>
-            <ul class="navList flex-row">
-              <li class="navItem flex-column">
-                <a href="./pages/userpage.html">კაბინეტი</a>
-              </li>
-            </ul>
-          </nav>
+          <ul class="navList flex-row">
+            <li class="navItem flex-column"><a href="#">კაბინეტი</a></li>
+          </ul>
         </div>
       </header>
 
       <!-- MAIN SECTION -->
-      <main class="main container">
-        <!-- Search container -->
-        <div class="searchSection flex-column">
-          <h2>მატარებლის ბილეთები</h2>
-          <!-- Search form for trains -->
-          <div class="ticketSearch">
-            <form id="searchForm" class="searchForm flex-row">
-              <select name="departure" id="departure" required>
-                <option value="" selected disabled>&#xf601; საიდან</option>
-              </select>
-
-              <select name="arive" id="arive" required>
-                <option value="" selected disabled>&#xf3c5; სად</option>
-              </select>
-
-              <input
-                type="date"
-                name="departureDate"
-                id="departureDate"
-                required />
-
-              <button>&#xf002; ძებნა</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Section to show available trains -->
-        <section class="trainsList flex-column"></section>
+      <main class="main container flex-column">
+        <a href="../index.html" class="returnBtn">
+          <i class="fa-solid fa-house"></i>
+          მთავარ გვერდზე დაბრუნება</a
+        >
       </main>
 
       <!-- FOOTER SECTION -->
@@ -96,6 +69,6 @@
       </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="module" src="./scripts/app.js"></script>
+    <script type="module" src="../scripts/userpage.js"></script>
   </body>
 </html>
