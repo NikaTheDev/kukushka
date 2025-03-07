@@ -1,6 +1,6 @@
 let ticketNumber = localStorage.getItem("ticketNumber");
 let ticketDeleteBtn = document.querySelector(".ticketDelete");
-console.log(ticketNumber);
+
 
 if (!ticketNumber) {
   Swal.fire({

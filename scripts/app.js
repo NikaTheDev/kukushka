@@ -64,6 +64,7 @@ function searchTrains() {
 function displayTrains(arr) {
   trainsListSection.innerHTML = "";
   trainsListSection.innerHTML = `<h3 class="trainsListHeading">აირჩიე რეისი <span>${departure.value} - ${arive.value}ს</span> მიმართულებით </h3>`;
+  trainsListSection.scrollIntoView();
 
   arr.forEach((train) => {
     trainsListSection.innerHTML += `<div class="trainsListItem flex-row">

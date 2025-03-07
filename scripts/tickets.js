@@ -1,9 +1,8 @@
-// let trainId = sessionStorage.getItem("selectedTrainId") || null;
+let trainId = sessionStorage.getItem("selectedTrainId") || null;
 let train = document.querySelector(".train");
 let vagons = document.querySelector(".vagons");
 let seatContainer = document.getElementById("seatContainer");
 
-let trainId = 15;
 let selectedSeats = [];
 
 if (!trainId) {
