@@ -349,7 +349,7 @@ img {
 
 /* INVOICE STYLES */
 .ticketsPage .invoice {
-  width: 20%;
+  width: 30%;
   background-color: #fff;
   border-radius: 0.5rem;
   align-self: stretch;
@@ -358,32 +358,35 @@ img {
 }
 
 .invoice h3 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin: 1rem 0 3rem 0;
 }
 
 .ivoiceSeats {
+  width: 100%;
   min-height: 12rem;
   justify-content: start;
 }
 
 .invoiceSeatheader {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  gap: 1rem;
+  gap: 0.75rem;
   margin-bottom: 1rem;
   align-items: start;
 }
 
 .invoiceSeatsList {
   width: 100%;
+  gap: 0.5rem;
 }
 
 .invoiceSeatRow {
-  width: 100%;
+  width: 90%;
   justify-content: space-evenly;
-  border: 1px solid var(--font-color-dark);
+  border-bottom: 1px solid var(--font-color-dark);
   border-radius: 0.25rem;
+  padding: 0.5rem 0;
 }
 
 .seatRowItem {
@@ -395,12 +398,11 @@ img {
 }
 
 .totalPriceContainer {
-  width: 100%;
+  width: 90%;
   justify-content: space-between;
   padding: 0.5rem 2rem;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  border: 3px solid black;
   border-radius: 0.25rem;
   color: #c02a28;
 }
@@ -428,7 +430,7 @@ img {
 }
 
 .ticketsPage .ticketsSection {
-  width: 80%;
+  width: 70%;
   background: #fff;
   border-radius: 0.5rem;
 }
@@ -463,6 +465,7 @@ img {
 /* vagons styles */
 .vagons {
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .vagons button {
@@ -491,29 +494,29 @@ img {
 
 /* seats styles */
 .seatContainer {
-  height: 15rem;
+  min-height: 15rem;
   width: 100%;
+  flex-direction: column;
 }
 
 .seatContainerId {
   display: none;
   grid-template-columns: repeat(10, 1fr);
-  gap: 0.25rem;
-  margin-top: 1rem;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .seat {
-  width: 3.25rem;
-  height: 3.25rem;
-  background-color: #a4b3c6;
+  width: 3rem;
+  height: 4rem;
+  background-color: #e0e0e0;
   border: 1px solid #ccc;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
   font-size: 1rem;
   font-weight: 700;
   border-radius: 0.25rem;
   padding: 0.25rem;
-  border-radius: 0.25rem;
   animation: slide-in-left 0.75s linear 0s 1 normal none;
 }
 
@@ -550,17 +553,33 @@ img {
 
 /* Passangers info section style */
 .passangers {
-  width: 80%;
+  width: 90%;
 }
 
 .contactInfo {
   gap: 1rem;
   width: 90%;
+  flex-wrap: wrap;
 }
 
 .passangerInfo {
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.passangerInfo::after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  margin-top: 0.25rem;
+  background-color: #a4a4a4;
+}
+
+.passangerInfoList {
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .passangersForm input,
@@ -943,6 +962,18 @@ img {
 }
 
 /* #region Responsive styles */
+@media only screen and (max-width: 950px) {
+  .ticketsPage {
+    flex-direction: column;
+  }
+
+  .ticketsPage .invoice,
+  .ticketsPage .ticketsSection {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .brandName {
     font-size: 1.75rem;
@@ -988,6 +1019,52 @@ img {
 
   .transactionForm input {
     padding: 0.75rem;
+  }
+
+  .ticketsPage .invoice,
+  .ticketsPage .ticketsSection {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .brandName {
+    font-size: 1.5rem;
+  }
+
+  .ticketsChoose h3 {
+    font-size: 1.2rem;
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  .train .travelInfo {
+    flex-direction: column;
+  }
+
+  .trainInfo {
+    margin: 0.5rem 0;
+  }
+
+  .chooseVagon,
+  .vagons {
+    width: 100%;
+  }
+
+  .vagons .vagonBtn {
+    height: 5rem;
+    width: 7rem;
+    margin: 1rem 0;
+    font-size: 1rem;
+  }
+
+  .seatContainerId {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    grid-template-rows: repeat(10, auto); /* 10 rows */
+  }
+
+  .seat {
+    width: 4rem;
+    height: 3rem;
   }
 }
 

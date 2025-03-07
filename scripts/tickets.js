@@ -1,7 +1,7 @@
 let trainId = sessionStorage.getItem("selectedTrainId") || null;
 let train = document.querySelector(".train");
 let vagons = document.querySelector(".vagons");
-let seatContainer = document.getElementById("seatContainer");
+let seatContainer = document.querySelector("#seatContainer");
 
 let selectedSeats = [];
 
@@ -286,6 +286,7 @@ document
       .then((text) => {
         let ticketNumber = text.split(":")[1];
         localStorage.setItem("ticketNumber", ticketNumber);
+        sessionStorage.removeItem("ticketData");
         window.location.href = "./transaction.html";
       })
       .catch((error) => {
