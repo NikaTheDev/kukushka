@@ -972,6 +972,10 @@ img {
     width: 80%;
     margin: 0 auto;
   }
+
+  .message h3 {
+    font-size: 1.3rem;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -1025,6 +1029,9 @@ img {
   .ticketsPage .ticketsSection {
     width: 95%;
   }
+  .barcodeText {
+    font-size: 0.5rem;
+  }
 }
 
 @media only screen and (max-width: 660px) {
@@ -1065,6 +1072,14 @@ img {
   .seat {
     width: 4rem;
     height: 3rem;
+  }
+
+  .message h3 {
+    font-size: 1.15rem;
+  }
+
+  .barcodeText {
+    font-size: 0.45rem;
   }
 }
 
