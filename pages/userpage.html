@@ -28,17 +28,100 @@
             <h1 class="brandName">Kukushka Express</h1>
           </div>
           <ul class="navList flex-row">
-            <li class="navItem flex-column"><a href="#">კაბინეტი</a></li>
+            <li class="navItem flex-column">
+              <a href="../index.html">
+                <i class="fa-solid fa-house"></i>
+                მთავარ გვერდზე დაბრუნება</a
+              >
+            </li>
           </ul>
         </div>
       </header>
 
       <!-- MAIN SECTION -->
       <main class="main container flex-column">
-        <a href="../index.html" class="returnBtn">
-          <i class="fa-solid fa-house"></i>
-          მთავარ გვერდზე დაბრუნება</a
-        >
+        <div class="userpage flex-column">
+          <div class="userInfoContainer flex-column">
+          </div>
+
+          <div class="userpageForms flex-column">
+            <div class="switchContainer">
+              <button id="regSwitch" class="regSwitch">რეგისტრაცია</button>
+              <button id="logSwitch" class="logSwitch">შესვლა</button>
+            </div>
+            <form class="regForm flex-column" id="regForm">
+              <h3>რეგისტრაცია</h3>
+
+              <input
+                type="text"
+                name="firstNameReg"
+                id="firstNameReg"
+                class="formItem"
+                placeholder="სახელი" />
+
+              <input
+                type="text"
+                name="lastNameReg"
+                id="lastNameReg"
+                class="formItem"
+                placeholder="გვარი" />
+
+              <input
+                type="email"
+                name="emailReg"
+                id="emailReg"
+                class="formItem"
+                placeholder="ელფოსტა" />
+
+              <input
+                type="tel"
+                name="phoneReg"
+                id="phoneReg"
+                class="formItem"
+                required
+                placeholder="ტელეფონის ნომერი*" />
+
+              <input
+                type="password"
+                name="passwordReg"
+                id="passwordReg"
+                class="formItem"
+                required
+                placeholder="პაროლი*" />
+
+              <button class="formItem">რეგისტრაცია</button>
+            </form>
+
+            <form id="logInForm" class="logInForm flex-column">
+              <h3>შესვლა</h3>
+
+              <input
+                type="tel"
+                name="phoneLogIn"
+                id="phoneLogIn"
+                class="formItem"
+                required
+                placeholder="ტელეფონის ნომერი" />
+
+              <input
+                type="password"
+                name="passwordLogIn"
+                id="passwordLogIn"
+                class="formItem"
+                required
+                placeholder="პაროლი" />
+
+                <label for="saveLogIn" class="formItem saveLogInLabel flex-row">
+                  <input type="checkbox" name="saveLogIn" id="saveLogIn" class="saveLogIn">
+                  პაროლის დამახსოვრება
+                  </label>
+                
+
+              <button class="formItem">შესვლა</button>
+            </form>
+          </div>
+
+        </div>
       </main>
 
       <!-- FOOTER SECTION -->
@@ -63,7 +146,7 @@
           </div>
           <div class="copy">
             <p>2025 &copy;</p>
-            <p></p>
+           
           </div>
         </div>
       </footer>
