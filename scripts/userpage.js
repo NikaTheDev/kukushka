@@ -6,8 +6,8 @@ let saveLogIn = document.querySelector("#saveLogIn");
 let userpageForms = document.querySelector(".userpageForms");
 let userInfoContainer = document.querySelector(".userInfoContainer");
 
-let savedToken =
-  localStorage.getItem("token") || sessionStorage.getItem("token");
+// Check if token is saved in cookies
+let savedToken = getCookie("token");
 if (savedToken) {
   displayUser();
   userpageForms.style.display = "none";
@@ -42,6 +42,15 @@ regForm.addEventListener("submit", function (e) {
   let lastName =
     document.querySelector("#lastNameReg").value || "randomLastName";
   let role = "user";
+
+  // Input validation
+  if (!phoneNumber || !password) {
+    Swal.fire({
+      text: "გთხოვთ, შეიყვანოთ ყველა საჭირო მონაცემი.",
+      icon: "warning",
+    });
+    return;
+  }
 
   fetch("https://rentcar.stepprojects.ge/api/Users/register", {
     method: "POST",
@@ -81,6 +90,15 @@ logInForm.addEventListener("submit", function (e) {
   let phoneNumber = document.querySelector("#phoneLogIn").value;
   let password = document.querySelector("#passwordLogIn").value;
 
+  // Input validation
+  if (!phoneNumber || !password) {
+    Swal.fire({
+      text: "გთხოვთ, შეიყვანოთ ყველა საჭირო მონაცემი.",
+      icon: "warning",
+    });
+    return;
+  }
+
   fetch("https://rentcar.stepprojects.ge/api/Users/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -97,10 +115,12 @@ logInForm.addEventListener("submit", function (e) {
     })
     .then((data) => {
       if (data.token) {
-        let storage = saveLogIn.checked ? localStorage : sessionStorage;
-        storage.setItem("token", data.token);
+        // Set token in cookies
+        let storageDays = saveLogIn.checked ? 3 : 0; // Store for 3 days if "Remember Me" is checked, session-only if unchecked
+        setCookie("token", data.token, storageDays);
+
         Swal.fire({
-          text: "თქვენ წარმატებით შეხვედით მომხმარებლის გვერდზე!",
+          text: "თქვენ წარმატებით შეხვიდით მომხმარებლის გვერდზე!",
           icon: "success",
         });
         displayUser();
@@ -118,8 +138,8 @@ function displayUser() {
 }
 
 function logout() {
-  localStorage.removeItem("token");
-  sessionStorage.removeItem("token");
+  // Delete token cookie on logout
+  deleteCookie("token");
   Swal.fire({
     text: "თქვენ გამოხვედით სისტემიდან!",
     icon: "warning",
@@ -128,4 +148,30 @@ function logout() {
   userpageForms.style.display = "flex";
   logInForm.style.display = "flex";
   regForm.style.display = "none";
+}
+
+// Function to set a cookie
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days > 0) {
+    let date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + value + "; path=/" + expires;
+}
+
+// Function to get a cookie by name
+function getCookie(name) {
+  let cookies = document.cookie.split("; ");
+  for (let cookie of cookies) {
+    let [cookieName, cookieValue] = cookie.split("=");
+    if (cookieName === name) return cookieValue;
+  }
+  return null;
+}
+
+// Function to delete a cookie
+function deleteCookie(name) {
+  document.cookie = name + "=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 }
