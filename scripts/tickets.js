@@ -1,10 +1,13 @@
+// Selectors
 let trainId = sessionStorage.getItem("selectedTrainId") || null;
 let train = document.querySelector(".train");
 let vagons = document.querySelector(".vagons");
 let seatContainer = document.querySelector("#seatContainer");
 
+// selected seats store here
 let selectedSeats = [];
 
+// Checks if train is choosen
 if (!trainId) {
   Swal.fire({
     text: "მატარებელი ვერ მოიძებნა. მთავარ გვერდზე დაბრუნება.",
@@ -21,6 +24,7 @@ if (!trainId) {
 fetch(`https://railway.stepprojects.ge/api/trains/${trainId}`)
   .then((resp) => resp.json())
   .then((train) => {
+    console.log("Fetched train:", train);
     showTrain(train);
     showVagons(train.vagons);
   });
@@ -72,12 +76,13 @@ function showSeats(id) {
     .then((resp) => resp.json())
     .then((vagonData) => {
       let vagon = vagonData[0];
-
+      console.log("Fetched vagon:", vagon);
       let seatContainerId = document.createElement("div");
       seatContainerId.setAttribute("id", `vagon-${vagon.id}`);
       seatContainerId.classList.add("seatContainerId");
       seatContainer.append(seatContainerId);
 
+      // sorting seats
       const sortedSeats = vagon.seats.sort((a, b) => {
         const regex = /^(\d+)([A-Za-z])$/;
         const [, numA, letterA] = a.number.match(regex);
@@ -143,7 +148,6 @@ function toggleSeatSelection(seatBtn) {
   }
   updateInvoice();
   updatePassengerInfo();
-  console.log("Selected Seats:", selectedSeats);
 }
 
 function updateInvoice() {
@@ -151,7 +155,6 @@ function updateInvoice() {
   invoiceSeatsList.innerHTML = "";
 
   selectedSeats.forEach((seat) => {
-    console.log(seat);
     let seatRow = document.createElement("div");
     seatRow.classList.add("invoiceSeatRow", "flex-row");
 
@@ -227,9 +230,7 @@ function updatePassengerInfo() {
 
   let allPassengerRows = passengerContainer.querySelectorAll(".passangerInfo");
   allPassengerRows.forEach((row) => {
-    console.log(row);
     let seatId = row.getAttribute("id").substring("passanger-".length);
-    console.log(seatId);
     if (!selectedSeats.some((seat) => seat.seatId === seatId)) {
       row.remove();
     }
@@ -260,7 +261,7 @@ document
         name: name,
         surname: surname,
         idNumber: idNumber,
-        status: "string",
+        status: "passenger",
         payoutCompleted: true,
       };
     });

@@ -17,7 +17,6 @@ if (!ticketNumber) {
 }
 
 ticketConfirmMessage.textContent = `ბილეთი დადასტურებულია.`;
-console.log(ticketNumber);
 
 fetch(`https://railway.stepprojects.ge/api/tickets/checkstatus/${ticketNumber}`)
   .then((resp) => resp.json())

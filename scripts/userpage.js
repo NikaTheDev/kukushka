@@ -43,7 +43,6 @@ regForm.addEventListener("submit", function (e) {
     document.querySelector("#lastNameReg").value || "randomLastName";
   let role = "user";
 
-  // Input validation
   if (!phoneNumber || !password) {
     Swal.fire({
       text: "გთხოვთ, შეიყვანოთ ყველა საჭირო მონაცემი.",
@@ -90,7 +89,6 @@ logInForm.addEventListener("submit", function (e) {
   let phoneNumber = document.querySelector("#phoneLogIn").value;
   let password = document.querySelector("#passwordLogIn").value;
 
-  // Input validation
   if (!phoneNumber || !password) {
     Swal.fire({
       text: "გთხოვთ, შეიყვანოთ ყველა საჭირო მონაცემი.",
@@ -115,8 +113,7 @@ logInForm.addEventListener("submit", function (e) {
     })
     .then((data) => {
       if (data.token) {
-        // Set token in cookies
-        let storageDays = saveLogIn.checked ? 3 : 0; // Store for 3 days if "Remember Me" is checked, session-only if unchecked
+        let storageDays = saveLogIn.checked ? 3 : 0;
         setCookie("token", data.token, storageDays);
 
         Swal.fire({
@@ -138,7 +135,6 @@ function displayUser() {
 }
 
 function logout() {
-  // Delete token cookie on logout
   deleteCookie("token");
   Swal.fire({
     text: "თქვენ გამოხვედით სისტემიდან!",

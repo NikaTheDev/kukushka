@@ -14,8 +14,8 @@ function getStations() {
   fetch("https://railway.stepprojects.ge/api/stations")
     .then((resp) => resp.json())
     .then((stations) => {
+      console.log("Fetched stations:", stations);
       stations.forEach((station) => {
-        console.log("Stations fetched:", stations);
         let option1 = document.createElement("option");
         option1.textContent = station.name;
         departure.appendChild(option1);
@@ -28,7 +28,7 @@ function getStations() {
     .catch((error) => console.error("Error fetching stations:", error));
 }
 
-// Search and Fetch trains
+// Fetch trains
 function searchTrains() {
   let from = departure.value;
   let to = arive.value;
@@ -47,7 +47,7 @@ function searchTrains() {
   )
     .then((resp) => resp.json())
     .then((data) => {
-      console.log("Trains fetched:", data);
+      console.log("Fetched trains:", data);
       displayTrains(data[0].trains);
     })
     .catch((error) => {
